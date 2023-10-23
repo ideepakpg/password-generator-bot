@@ -49,15 +49,27 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
     long chatId = update.Message.Chat.Id; // Get the chat ID from the incoming message (dynamic chatId)
 
 
+    //Display user entered command details in console
+    if (messageText.StartsWith("/"))
+    {
+        // Get the current date and time (to show in console)
+        DateTime currentTime = DateTime.Now;
+
+        // Display the user's chat ID, date, and time in console
+        Console.WriteLine($"User with Chat ID {message.Chat.Id}, Username: @{message.Chat.Username ?? "N/A"}, sent the command '{messageText}' at {currentTime.ToLocalTime()}.");
+
+    }
+
+
     if (messageText.Equals("/generate", StringComparison.InvariantCultureIgnoreCase))
     {
-        string randomPassword = GenerateRandomPassword(12);
+        string randomPassword = GenerateRandomPassword(20);
         await botClient.SendTextMessageAsync(chatId, "Generated Password: " + randomPassword);
     }
 
     static string GenerateRandomPassword(int length)
     {
-        const string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        const string validChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890@#$&&-()=%\"*':/!?+,.£€¥¢~¿ []{}<>^¡`;÷|¦¬×§°";
 
         var random = new Random();
         var passwordChars = new char[length];
@@ -70,9 +82,7 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
         return new string(passwordChars);
     }
 
-
 }
-
 
 
 //Handles errors that occur during the polling process of the Telegram bot.
