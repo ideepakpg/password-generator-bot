@@ -3,7 +3,7 @@ using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-
+using Telegram.Bot.Types.ReplyMarkups;
 
 var botClient = new TelegramBotClient("BOT_TOKEN");
 
@@ -58,18 +58,45 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
         // Display the user's chat ID, date, and time in console
         Console.WriteLine($"User with Chat ID {message.Chat.Id}, Username: @{message.Chat.Username ?? "N/A"}, sent the command '{messageText}' at {currentTime.ToLocalTime()}.");
 
+
+    }
+
+
+    if (messageText.Equals("/start", StringComparison.InvariantCultureIgnoreCase))
+    {
+        var inlineKeyboard = new InlineKeyboardMarkup(new List<List<InlineKeyboardButton>>
+        {
+            // First row
+            new List<InlineKeyboardButton>
+            {
+                InlineKeyboardButton.WithUrl("My Owner", "https://t.me/ideepakpg"),
+                InlineKeyboardButton.WithUrl("Repo", "https://github.com/ideepakpg/password-generator-bot")
+            }
+        });
+
+        Message newMessage = await botClient.SendTextMessageAsync(
+            chatId: chatId,
+            text: "*Welcome to the Password Generator Bot*",
+            parseMode: ParseMode.MarkdownV2,
+            disableNotification: true,
+            replyToMessageId: update.Message.MessageId,
+            replyMarkup: inlineKeyboard,
+            cancellationToken: cancellationToken);
     }
 
 
     if (messageText.Equals("/generate", StringComparison.InvariantCultureIgnoreCase))
     {
-        string randomPassword = GenerateRandomPassword(20);
-        await botClient.SendTextMessageAsync(chatId, "Generated Password: " + randomPassword);
+        string randomPassword = GenerateRandomPassword(25);
+        string message1 = "Generated Password: `" + randomPassword + "`";
+
+        await botClient.SendTextMessageAsync(chatId, message1, parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown, replyToMessageId: update.Message.MessageId, replyMarkup: null, cancellationToken: cancellationToken);
+
     }
 
     static string GenerateRandomPassword(int length)
     {
-        const string validChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890@#$&&-()=%\"*':/!?+,.£€¥¢~¿ []{}<>^¡`;÷|¦¬×§°";
+        const string validChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890@#$&&-()=%\"*':/!?+,.£€¥~¿[]{}<>^¡`;÷|¦¬×";
 
         var random = new Random();
         var passwordChars = new char[length];
