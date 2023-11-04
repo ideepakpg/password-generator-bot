@@ -76,7 +76,7 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, Cancel
 
         Message newMessage = await botClient.SendTextMessageAsync(
             chatId: chatId,
-            text: "*Welcome to the Password Generator Bot*",
+            text: "Welcome to the Password Generator Bot",
             parseMode: ParseMode.MarkdownV2,
             disableNotification: true,
             replyToMessageId: update.Message.MessageId,
