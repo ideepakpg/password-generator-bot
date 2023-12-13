@@ -1,1 +1,1 @@
-﻿worker: dotnet bin/Debug/net7.0/password-generator-bot.exe
+﻿web cd $HOME/heroku_output && ./password-generator-bot
