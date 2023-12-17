@@ -57,6 +57,11 @@ Find the bot on [Currency Exchange Bot](https://t.me/random_passgen_bot)
 2. Send the `/generate` command to trigger the password generation.
 
 3. The bot will immediately create a strong, random password for you.
+
+## Screenshot
+
+![Screenshot (27)](https://github.com/ideepakpg/password-generator-bot/assets/123804790/f322ec71-e499-484e-97fc-46c537c4348f)
+
   
 ## Upcoming Updates
 I am continuously working on improving the Password Generator Bot. Here are some of the features and updates you can expect in the near future:
