@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "f1HGuvhBa5NiXPr1MNB4+eCopM2DIz0Pi+tiVrnYDGVkSn2ugU9xpyf1K1SND5y093DJtkOk2OkmlshLx2BHJQ==",
+  "success": true,
+  "projectFilePath": "D:\\Visual Studio Programs\\Telegram Bots\\password-generator-bot\\password-generator-bot.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Deepak\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\Deepak\\.nuget\\packages\\telegram.bot\\19.0.0\\telegram.bot.19.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
